@@ -1,0 +1,17 @@
+Using an explicit iterator to walk through list
+apple
+banana
+cherry
+
+Using enhanced for loop to test Iterator
+apple
+banana
+cherry
+
+Testing on a single item list
+single item
+
+Testing on MyList object that is empty using enhanced for loop
+
+Unsupported Operation Exception on call to remove.
+remove not implemented for MyListIterator
