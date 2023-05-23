@@ -120,6 +120,7 @@ public class LinkListTest {
             for(String a: testList)
                 result += a + " ";
             assertEquals("1 2 3 4 5 6 ", result);
+            System.out.println();
 
         }
 

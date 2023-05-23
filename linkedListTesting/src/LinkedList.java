@@ -42,8 +42,11 @@ public class LinkedList<T extends Comparable<? super T>> implements Iterable<T>{
     public void addAfter(final Node before, final Node after){
         if(after == null)
             return;
-        else if (before == null)
-            addFirst(after.getElement());
+        else if (before == null){
+            after.setNext(this.head);
+            this.head = after;
+            size++;
+        }
         else{
             after.setNext(before.getNext());
             before.setNext(after);
@@ -122,7 +125,7 @@ public class LinkedList<T extends Comparable<? super T>> implements Iterable<T>{
         Node prevMin = null;
         Node prevSearch = null;
         Node search = null;
-
+//test
         for(; curr.getNext() != null; curr = curr.getNext()) {
             min = prevSearch = curr;
             prevMin = prev;
@@ -136,34 +139,15 @@ public class LinkedList<T extends Comparable<? super T>> implements Iterable<T>{
 
 
             if (min != curr) {
-                Node temp = min.getNext();
-                if(curr == this.head){
-                    if (prevMin == curr){
-                        min.setNext(curr);
-                        this.head = min;
-                        curr.setNext(temp);
-                    }
-                    else {
-                        min.setNext(curr.getNext());
-                        prevMin.setNext(curr);
-                        curr.setNext(temp);
-                        this.head = min;
-                    }
-
+                if (prevMin == curr) {
+                    remove(prev, curr);
+                    addAfter(min, curr);
                 }
                 else {
-                    if (prevMin == curr) {
-                        prev.setNext(min);
-                        curr.setNext(temp);
-                        min.setNext(curr);
-                    }
-                    else {
-                        min.setNext(curr.getNext());
-                        prevMin.setNext(curr);
-                        curr.setNext(temp);
-                        prev.setNext(min);
-                    }
-
+                    remove(prevMin, min);
+                    remove(prev, curr);
+                    addAfter(prevMin, curr);
+                    addAfter(prev, min);
                 }
                 curr = min;
             }
@@ -231,7 +215,7 @@ public class LinkedList<T extends Comparable<? super T>> implements Iterable<T>{
         return new MyIterator();
     }
 
-    private class MyIterator implements Iterator{
+    private class MyIterator implements Iterator<T>{
         Node curr = head;
         @Override
         public boolean hasNext() {
