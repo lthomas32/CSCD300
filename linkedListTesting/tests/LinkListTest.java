@@ -3,6 +3,7 @@
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LinkListTest {
@@ -125,6 +126,17 @@ public class LinkListTest {
         }
 
 
+    }
+
+    @Nested
+    public class Sorting{
+        @Test
+        public void mergeSortTest(){
+            int [] unsorted = {5, 4, 3, 2, 1};
+            int [] sorted = {1, 2, 3, 4, 5};
+            Sort.mergeSort(unsorted, 0 , unsorted.length - 1);
+            assertArrayEquals(sorted, unsorted);
+        }
     }
 
 }

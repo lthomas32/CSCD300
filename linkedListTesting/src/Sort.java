@@ -6,7 +6,6 @@ import java.lang.reflect.Array;
 public class Sort {
     public static <T extends Comparable<? super T>> void selectionSort(T [] arr){
         int inner, outer, min;
-        T temp;
 
         for(inner = 0; inner < arr.length -1; inner++){
             min = inner;
@@ -60,19 +59,17 @@ public class Sort {
     }
 
     private static void merge(int[] arr, int start, int middle, int end){
-        int [] leftArr = new int[middle-start];
+        int [] leftArr = new int[middle-start+1];
         int [] rightArr = new int[end-middle];
 
-        int copy = start;
-        int copy2 = middle;
 
         for (int i = 0; i < leftArr.length; i++) {
-            leftArr[i] = arr[copy];
-            copy++;
+            leftArr[i] = arr[start+i];
+
         }
         for (int i = 0; i < rightArr.length; i++) {
-            rightArr[i] = arr[copy2];
-            copy2++;
+            rightArr[i] = arr[middle+1+i];
+
         }
 
         int i = 0; int j = 0;

@@ -1,7 +1,7 @@
 import java.util.Iterator;
 
 public class LinkedList<T extends Comparable<? super T>> implements Iterable<T>{
-    Node head;
+    private Node head;
     private int size;
     private class Node {
         private T element;
